@@ -1,0 +1,54 @@
+# ===========================
+# PHOENIX .gitignore
+# ===========================
+
+# --- Simulation (cloned during setup, too large for GitHub) ---
+simulation/ardupilot/
+simulation/ardupilot_gazebo/
+
+# --- Build artifacts ---
+phoenix/bridge-app/USBTCPBridge/build/
+phoenix/bridge-app/USBTCPBridge/.gradle/
+phoenix/bridge-app/build/
+phoenix/bridge-app/.gradle/
+*.class
+*.dex
+*.jar
+
+# --- APK files (too large, distributed separately) ---
+*.apk
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+*.egg
+
+# --- Logs & telemetry ---
+*.tlog
+*.tlog.raw
+*.log
+*.bin
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# --- IDE ---
+.idea/
+.vscode/
+*.iml
+local.properties
+
+# --- Node ---
+node_modules/
+
+# --- Misc ---
+*.bak
+*.tmp

@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">USB-TCP Bridge</string>
+    
+    <!-- Service -->
+    <string name="notification_channel_name">Bridge Service</string>
+    <string name="notification_channel_description">Shows the status of the USB-TCP bridge connection</string>
+    <string name="notification_title">USB-TCP Bridge Active</string>
+    <string name="notification_text_running">Bridging USB to TCP on port %d</string>
+    <string name="notification_text_waiting">Waiting for connection…</string>
+    <string name="action_stop">Stop</string>
+    
+    <!-- MainActivity -->
+    <string name="status_usb">USB Status</string>
+    <string name="status_tcp">TCP Status</string>
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_waiting">Waiting for client…</string>
+    <string name="status_listening">Listening on port %d</string>
+    
+    <string name="label_tcp_port">TCP Port</string>
+    <string name="label_baud_rate">Baud Rate</string>
+    <string name="hint_tcp_port">1234</string>
+    <string name="hint_baud_rate">9600</string>
+    
+    <string name="toggle_start">Start Bridge</string>
+    <string name="toggle_stop">Stop Bridge</string>
+    
+    <string name="log_title">Live Log</string>
+    <string name="clear_log">Clear Log</string>
+    
+    <!-- Error messages -->
+    <string name="error_invalid_port">Port must be between 1 and 65535</string>
+    <string name="error_invalid_baud">Invalid baud rate</string>
+    <string name="error_no_usb_device">No USB device found</string>
+    <string name="error_usb_permission_denied">USB permission denied</string>
+    <string name="error_service_start_failed">Failed to start service</string>
+    
+    <!-- Log messages -->
+    <string name="log_usb_connected">USB device connected: %s</string>
+    <string name="log_usb_disconnected">USB device disconnected</string>
+    <string name="log_tcp_client_connected">TCP client connected: %s</string>
+    <string name="log_tcp_client_disconnected">TCP client disconnected</string>
+    <string name="log_tcp_server_started">TCP server started on port %d</string>
+    <string name="log_tcp_server_stopped">TCP server stopped</string>
+    <string name="log_data_usb_to_tcp">USB → TCP: %d bytes</string>
+    <string name="log_data_tcp_to_usb">TCP → USB: %d bytes</string>
+    <string name="log_error">Error: %s</string>
+    <string name="log_service_started">Bridge service started</string>
+    <string name="log_service_stopped">Bridge service stopped</string>
+</resources>

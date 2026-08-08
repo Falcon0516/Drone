@@ -1,0 +1,231 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/falcon/.gradle/wrapper/dists/gradle-8.11.1-all/2qik7nd48slq1ooc2496ixf4i/gradle-8.11.1/lib/native-platform-0.22-milestone-26.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-08-08T07:54:10.136+0530 [INFO] [org.gradle.internal.nativeintegration.services.NativeServices] Initialized native services in: /Users/falcon/.gradle/native
+2026-08-08T07:54:10.161+0530 [INFO] [org.gradle.internal.nativeintegration.services.NativeServices] Initialized jansi services in: /Users/falcon/.gradle/native
+2026-08-08T07:54:10.170+0530 [LIFECYCLE] [org.gradle.launcher.cli.DebugLoggerWarningAction] 
+#############################################################################
+   WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+
+   Debug level logging will leak security sensitive information!
+
+   For more details, please refer to https://docs.gradle.org/8.11.1/userguide/logging.html#sec:debug_security in the Gradle documentation.
+#############################################################################
+
+2026-08-08T07:54:10.273+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClient] Executing build 3d4b34c3-180a-43bf-9b82-ade32c5adad3 in daemon client {pid=29458}
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface utun5
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:8ff3:8051:e715:5eb3%utun5
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface utun4
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:8763:2539:b52c:638d%utun4
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface utun3
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:ce81:b1c:bd2c:69e%utun3
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface utun2
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:c34a:e47b:c641:4f02%utun2
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface utun1
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:2d6a:b702:61c5:55b2%utun1
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface utun0
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:7c2e:f809:d55c:b919%utun0
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface llw0
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:bcb5:2ff:feca:23eb%llw0
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface awdl0
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:bcb5:2ff:feca:23eb%awdl0
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface utun6
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fd7a:115c:a1e0:0:0:0:4734:3a25%utun6
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:48c0:5b67:403a:b89e%utun6
+2026-08-08T07:54:10.277+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /100.91.58.36
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface en0
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:e9:f73d:dbeb:de8e%en0
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /192.168.0.245
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface lo0
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? true
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Ignoring remote address on loopback interface /fe80:0:0:0:0:0:0:1%lo0
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding loopback address /0:0:0:0:0:0:0:1%lo0
+2026-08-08T07:54:10.278+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding loopback address /127.0.0.1
+2026-08-08T07:54:10.289+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-08-08T07:54:10.290+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-08-08T07:54:10.292+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-08-08T07:54:10.294+0530 [INFO] [org.gradle.launcher.daemon.client.DefaultDaemonConnector] Found daemon DaemonInfo{pid=21561, address=[a938b7cd-ccf4-43e0-9a03-85887a2236f4 port:55357, addresses:[/127.0.0.1]], state=Idle, lastBusy=1786125485437, context=DefaultDaemonContext[uid=d592f5c0-8c9a-4226-8eae-39b0f605f253,javaHome=/Users/falcon/.antigravity-ide/extensions/redhat.java-1.55.0-darwin-arm64/jre/21.0.11-macosx-aarch64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21561,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home (no JDK specified, using current Java home), daemonOpts=[-Xmx2048m, -Dfile.encoding=UTF-8, -Duser.country=IN, -Duser.language=en, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=d592f5c0-8c9a-4226-8eae-39b0f605f253,javaHome=/Users/falcon/.antigravity-ide/extensions/redhat.java-1.55.0-darwin-arm64/jre/21.0.11-macosx-aarch64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21561,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]
+
+  Looking for a different daemon...
+2026-08-08T07:54:10.294+0530 [INFO] [org.gradle.launcher.daemon.client.DefaultDaemonConnector] Found daemon DaemonInfo{pid=21583, address=[42b0fa83-b3a1-4d38-9c1f-4fa35da03e9e port:55367, addresses:[/127.0.0.1]], state=Idle, lastBusy=1786153811677, context=DefaultDaemonContext[uid=759ab08d-8145-4d6f-ad8b-f5723d87e7c6,javaHome=/Users/falcon/.antigravity-ide/extensions/redhat.java-1.55.0-darwin-arm64/jre/21.0.11-macosx-aarch64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21583,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home (no JDK specified, using current Java home), daemonOpts=[-Xmx2048m, -Dfile.encoding=UTF-8, -Duser.country=IN, -Duser.language=en, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=759ab08d-8145-4d6f-ad8b-f5723d87e7c6,javaHome=/Users/falcon/.antigravity-ide/extensions/redhat.java-1.55.0-darwin-arm64/jre/21.0.11-macosx-aarch64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21583,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]
+
+  Looking for a different daemon...
+2026-08-08T07:54:10.295+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.TcpOutgoingConnector] Attempting to connect to [0a817e95-b12c-47a7-b152-75b48f9fe6f0 port:55339, addresses:[/127.0.0.1]].
+2026-08-08T07:54:10.295+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.TcpOutgoingConnector] Trying to connect to address /127.0.0.1.
+2026-08-08T07:54:10.296+0530 [DEBUG] [org.gradle.internal.remote.internal.inet.TcpOutgoingConnector] Connected to address /127.0.0.1:55339.
+2026-08-08T07:54:10.304+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClient] Connected to daemon DaemonInfo{pid=21534, address=[0a817e95-b12c-47a7-b152-75b48f9fe6f0 port:55339, addresses:[/127.0.0.1]], state=Idle, lastBusy=1786155834761, context=DefaultDaemonContext[uid=f92b1e1f-e5f6-4904-a16f-2cdb3859e5c5,javaHome=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home,javaVersion=25,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21534,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]}. Dispatching request Build{id=3d4b34c3-180a-43bf-9b82-ade32c5adad3, currentDir=/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app}.
+2026-08-08T07:54:10.304+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClientConnection] thread 3: dispatching class org.gradle.launcher.daemon.protocol.Build
+2026-08-08T07:54:10.316+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClient] Received result org.gradle.launcher.daemon.protocol.BuildStarted@6f152006 from daemon DaemonInfo{pid=21534, address=[0a817e95-b12c-47a7-b152-75b48f9fe6f0 port:55339, addresses:[/127.0.0.1]], state=Idle, lastBusy=1786155834761, context=DefaultDaemonContext[uid=f92b1e1f-e5f6-4904-a16f-2cdb3859e5c5,javaHome=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home,javaVersion=25,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21534,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]} (build should be starting).
+2026-08-08T07:54:10.317+0530 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 21534). The daemon log file: /Users/falcon/.gradle/daemon/8.11.1/daemon-21534.out.log
+2026-08-08T07:54:10.320+0530 [INFO] [org.gradle.launcher.daemon.server.exec.LogAndCheckHealth] Starting 7th build in daemon [uptime: 1 hrs 3 mins 7.651 secs, performance: 96%, GC rate: 0.00/s, heap usage: 0% of 2 GiB]
+2026-08-08T07:54:10.320+0530 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+2026-08-08T07:54:10.320+0530 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=f92b1e1f-e5f6-4904-a16f-2cdb3859e5c5,javaHome=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home,javaVersion=25,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21534,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]
+2026-08-08T07:54:10.329+0530 [INFO] [org.gradle.internal.work.DefaultWorkerLeaseService] Using 8 worker leases.
+2026-08-08T07:54:10.329+0530 [DEBUG] [org.gradle.internal.resources.AbstractTrackedResourceLock] Daemon worker Thread 3: acquired lock on worker lease
+2026-08-08T07:54:10.330+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Run build' started
+2026-08-08T07:54:10.339+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for fileHashes, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/fileHashes/fileHashes.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@2a258853
+2026-08-08T07:54:10.339+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Acquiring file lock for file hash cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/fileHashes)
+2026-08-08T07:54:10.339+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on file hash cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/fileHashes).
+2026-08-08T07:54:10.340+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on file hash cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/fileHashes).
+2026-08-08T07:54:10.340+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for outputFiles, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/buildOutputCleanup/outputFiles.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@956711d
+2026-08-08T07:54:10.341+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Acquiring file lock for Build Output Cleanup Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/buildOutputCleanup)
+2026-08-08T07:54:10.342+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on Build Output Cleanup Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/buildOutputCleanup).
+2026-08-08T07:54:10.342+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on Build Output Cleanup Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/buildOutputCleanup).
+2026-08-08T07:54:10.344+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for resourceHashesCache, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/fileHashes/resourceHashesCache.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@2a258853
+2026-08-08T07:54:10.348+0530 [INFO] [org.gradle.internal.watch.registry.impl.WatchableHierarchies] Now considering [/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app] as hierarchies to watch
+2026-08-08T07:54:10.348+0530 [INFO] [org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner] Watching the file system is configured to be enabled if available
+2026-08-08T07:54:10.348+0530 [DEBUG] [org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner] Watching the file system computed to be enabled if available
+2026-08-08T07:54:10.348+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Build started for file system watching' started
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: / from /dev/disk3s1s1 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected devfs: /dev from devfs (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /System/Volumes/VM from /dev/disk3s6 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /System/Volumes/Preboot from /dev/disk3s2 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /System/Volumes/Update from /dev/disk3s4 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /System/Volumes/xarts from /dev/disk1s2 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /System/Volumes/iSCPreboot from /dev/disk1s1 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /System/Volumes/Hardware from /dev/disk1s3 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /System/Volumes/Data from /dev/disk3s5 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected autofs: /System/Volumes/Data/home from map auto_home (remote: true)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /Library/Developer/CoreSimulator/Volumes/iOS_23E254a from /dev/disk5s1 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /Library/Developer/CoreSimulator/Cryptex/Images/bundle/SimRuntimeBundle-84A38563-01B8-4C8B-B5C8-C63A623D163A from /dev/disk7s1 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected apfs: /Library/Developer/CoreSimulator/Volumes/iOS_22D8075 from /dev/disk9s1 (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected nullfs: /private/var/folders/xg/y363j6rj4k99p8nh_yp3kkj80000gn/X/A09D2EE6-E432-5E7C-B2BF-8CFFCACA75CC from /Applications/IP Camera Lite.app/Wrapper (remote: false)
+2026-08-08T07:54:10.349+0530 [DEBUG] [org.gradle.internal.watch.vfs.impl.DefaultWatchableFileSystemDetector] Detected hfs: /Volumes/Docker from /dev/disk15s2 (remote: false)
+2026-08-08T07:54:10.351+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Build started for file system watching'
+2026-08-08T07:54:10.351+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Build started for file system watching' completed
+2026-08-08T07:54:10.351+0530 [INFO] [org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner] File system watching is active
+2026-08-08T07:54:10.351+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Load build' started
+2026-08-08T07:54:10.353+0530 [DEBUG] [org.gradle.initialization.properties.DefaultProjectPropertiesLoader] Found env project properties: []
+2026-08-08T07:54:10.353+0530 [DEBUG] [org.gradle.initialization.properties.DefaultProjectPropertiesLoader] Found system project properties: []
+2026-08-08T07:54:10.353+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Evaluate settings' started
+2026-08-08T07:54:10.355+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for workingDirs, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/vcsMetadata/workingDirs.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@6b28efea
+2026-08-08T07:54:10.361+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for md5-checksums, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums/md5-checksums.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@75b3430f
+2026-08-08T07:54:10.362+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Acquiring file lock for checksums cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums)
+2026-08-08T07:54:10.362+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on checksums cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums).
+2026-08-08T07:54:10.363+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on checksums cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums).
+2026-08-08T07:54:10.363+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for sha1-checksums, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums/sha1-checksums.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@75b3430f
+2026-08-08T07:54:10.363+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for sha256-checksums, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums/sha256-checksums.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@75b3430f
+2026-08-08T07:54:10.363+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for sha512-checksums, path /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums/sha512-checksums.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@75b3430f
+2026-08-08T07:54:10.364+0530 [DEBUG] [org.gradle.api.internal.artifacts.mvnsettings.DefaultLocalMavenRepositoryLocator] No local repository in Settings file defined. Using default path: /Users/falcon/.m2/repository
+2026-08-08T07:54:10.366+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for md-rule, path /Users/falcon/.gradle/caches/8.11.1/md-rule/md-rule.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@2cf1b4a8
+2026-08-08T07:54:10.366+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Acquiring file lock for cache directory md-rule (/Users/falcon/.gradle/caches/8.11.1/md-rule)
+2026-08-08T07:54:10.367+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on cache directory md-rule (/Users/falcon/.gradle/caches/8.11.1/md-rule).
+2026-08-08T07:54:10.367+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on cache directory md-rule (/Users/falcon/.gradle/caches/8.11.1/md-rule).
+2026-08-08T07:54:10.370+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Creating new cache for md-supplier, path /Users/falcon/.gradle/caches/8.11.1/md-supplier/md-supplier.bin, access org.gradle.cache.internal.DefaultCacheCoordinator@6333f2c7
+2026-08-08T07:54:10.371+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Acquiring file lock for cache directory md-supplier (/Users/falcon/.gradle/caches/8.11.1/md-supplier)
+2026-08-08T07:54:10.371+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on cache directory md-supplier (/Users/falcon/.gradle/caches/8.11.1/md-supplier).
+2026-08-08T07:54:10.372+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on cache directory md-supplier (/Users/falcon/.gradle/caches/8.11.1/md-supplier).
+2026-08-08T07:54:10.372+0530 [DEBUG] [org.gradle.internal.locking.LockFileReaderWriter] Lockfiles root: /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/gradle/dependency-locks
+2026-08-08T07:54:10.373+0530 [INFO] [org.gradle.internal.buildevents.BuildLogger] Starting Build
+2026-08-08T07:54:10.373+0530 [DEBUG] [org.gradle.internal.buildevents.BuildLogger] Gradle user home: /Users/falcon/.gradle
+2026-08-08T07:54:10.373+0530 [DEBUG] [org.gradle.internal.buildevents.BuildLogger] Current dir: /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app
+2026-08-08T07:54:10.374+0530 [DEBUG] [org.gradle.internal.buildevents.BuildLogger] Settings file: null
+2026-08-08T07:54:10.374+0530 [DEBUG] [org.gradle.internal.buildevents.BuildLogger] Build file: null
+2026-08-08T07:54:10.377+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Apply settings file 'settings.gradle.kts' to settings 'bridge-app'' started
+2026-08-08T07:54:10.377+0530 [DEBUG] [org.gradle.kotlin.dsl.provider.KotlinScriptPlugin] Applying Kotlin script to settings 'bridge-app'
+2026-08-08T07:54:10.442+0530 [DEBUG] [org.gradle.api.internal.runtimeshaded.RuntimeShadedJarFactory] Using Gradle runtime shaded JAR file: /Users/falcon/.gradle/caches/8.11.1/generated-gradle-jars/gradle-api-8.11.1.jar
+2026-08-08T07:54:10.446+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Identifying work' started
+2026-08-08T07:54:10.448+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Identifying work'
+2026-08-08T07:54:10.448+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Identifying work' completed
+2026-08-08T07:54:10.448+0530 [DEBUG] [org.gradle.internal.vfs.impl.AbstractVirtualFileSystem] Invalidating VFS paths: [/Users/falcon/.gradle/caches/8.11.1/kotlin-dsl/scripts/69fce6a46b4547e138850841fbf9638c-25ef3e73-dd33-47da-ad87-09db1a472fd4]
+2026-08-08T07:54:10.448+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Snapshot inputs and outputs before executing Kotlin DSL script compilation (Settings/TopLevel/stage1)' started
+2026-08-08T07:54:10.448+0530 [DEBUG] [org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep] Implementation for Kotlin DSL script compilation (Settings/TopLevel/stage1): org.gradle.kotlin.dsl.provider.StandardKotlinScriptEvaluator$KotlinScriptCompilationAndInstrumentation@a2b2739a8af778232333ab4feee22435
+2026-08-08T07:54:10.449+0530 [DEBUG] [org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep] Additional implementations for Kotlin DSL script compilation (Settings/TopLevel/stage1): []
+2026-08-08T07:54:10.449+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Snapshot inputs and outputs before executing Kotlin DSL script compilation (Settings/TopLevel/stage1)'
+2026-08-08T07:54:10.449+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Snapshot inputs and outputs before executing Kotlin DSL script compilation (Settings/TopLevel/stage1)' completed
+2026-08-08T07:54:10.449+0530 [INFO] [org.gradle.internal.execution.steps.AbstractResolveCachingStateStep] Caching disabled for Kotlin DSL script compilation (Settings/TopLevel/stage1) because:
+  Build cache is disabled
+2026-08-08T07:54:10.449+0530 [DEBUG] [org.gradle.internal.vfs.impl.AbstractVirtualFileSystem] Invalidating VFS paths: [/Users/falcon/.gradle/caches/8.11.1/kotlin-dsl/scripts/69fce6a46b4547e138850841fbf9638c-25ef3e73-dd33-47da-ad87-09db1a472fd4/instrumented/classes, /Users/falcon/.gradle/caches/8.11.1/kotlin-dsl/scripts/69fce6a46b4547e138850841fbf9638c-25ef3e73-dd33-47da-ad87-09db1a472fd4/reports/gradle-intercepted-methods.report]
+2026-08-08T07:54:10.449+0530 [DEBUG] [org.gradle.internal.execution.steps.PreCreateOutputParentsStep] Ensuring directory exists for property instrumentedOutput at /Users/falcon/.gradle/caches/8.11.1/kotlin-dsl/scripts/69fce6a46b4547e138850841fbf9638c-25ef3e73-dd33-47da-ad87-09db1a472fd4/instrumented/classes
+2026-08-08T07:54:10.450+0530 [DEBUG] [org.gradle.internal.execution.steps.PreCreateOutputParentsStep] Ensuring parent directory exists for property propertyUpgradeReportOutput at /Users/falcon/.gradle/caches/8.11.1/kotlin-dsl/scripts/69fce6a46b4547e138850841fbf9638c-25ef3e73-dd33-47da-ad87-09db1a472fd4/reports/gradle-intercepted-methods.report
+2026-08-08T07:54:10.450+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Executing Kotlin DSL script compilation (Settings/TopLevel/stage1)' started
+2026-08-08T07:54:10.450+0530 [DEBUG] [org.gradle.kotlin.dsl.execution.Interpreter] Compiling Settings/TopLevel/stage1 from settings file '/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/settings.gradle.kts'
+2026-08-08T07:54:10.453+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Compile script settings.gradle.kts (CLASSPATH)' started
+2026-08-08T07:54:10.504+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Compile script settings.gradle.kts (CLASSPATH)'
+2026-08-08T07:54:10.504+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Compile script settings.gradle.kts (CLASSPATH)' completed
+2026-08-08T07:54:10.504+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Executing Kotlin DSL script compilation (Settings/TopLevel/stage1)'
+2026-08-08T07:54:10.504+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Executing Kotlin DSL script compilation (Settings/TopLevel/stage1)' completed
+2026-08-08T07:54:10.505+0530 [DEBUG] [org.gradle.internal.vfs.impl.AbstractVirtualFileSystem] Invalidating VFS paths: [/Users/falcon/.gradle/caches/8.11.1/kotlin-dsl/scripts/69fce6a46b4547e138850841fbf9638c-25ef3e73-dd33-47da-ad87-09db1a472fd4/instrumented/classes, /Users/falcon/.gradle/caches/8.11.1/kotlin-dsl/scripts/69fce6a46b4547e138850841fbf9638c-25ef3e73-dd33-47da-ad87-09db1a472fd4/reports/gradle-intercepted-methods.report]
+2026-08-08T07:54:10.505+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Snapshot outputs after executing Kotlin DSL script compilation (Settings/TopLevel/stage1)' started
+2026-08-08T07:54:10.506+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Snapshot outputs after executing Kotlin DSL script compilation (Settings/TopLevel/stage1)'
+2026-08-08T07:54:10.506+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Snapshot outputs after executing Kotlin DSL script compilation (Settings/TopLevel/stage1)' completed
+2026-08-08T07:54:10.507+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Apply settings file 'settings.gradle.kts' to settings 'bridge-app''
+2026-08-08T07:54:10.507+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Apply settings file 'settings.gradle.kts' to settings 'bridge-app'' completed
+2026-08-08T07:54:10.507+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Evaluate settings'
+2026-08-08T07:54:10.507+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Evaluate settings' completed
+2026-08-08T07:54:10.508+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Load build'
+2026-08-08T07:54:10.508+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Load build' completed
+2026-08-08T07:54:10.508+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Finish root build tree' started
+2026-08-08T07:54:10.510+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Finish root build tree'
+2026-08-08T07:54:10.510+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Finish root build tree' completed
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] 
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] FAILURE: Build failed with an exception.
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] 
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] * What went wrong:
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] 25.0.1
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] 
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] * Try:
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] > Run with --stacktrace option to get the stack trace.
+2026-08-08T07:54:10.510+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] > Run with --scan to get full insights.
+2026-08-08T07:54:10.511+0530 [ERROR] [org.gradle.internal.buildevents.BuildExceptionReporter] > Get more help at https://help.gradle.org.
+2026-08-08T07:54:10.511+0530 [ERROR] [org.gradle.internal.buildevents.BuildResultLogger] 
+2026-08-08T07:54:10.511+0530 [ERROR] [org.gradle.internal.buildevents.BuildResultLogger] BUILD FAILED in 743ms
+2026-08-08T07:54:10.511+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Build finished for file system watching' started
+2026-08-08T07:54:10.511+0530 [INFO] [org.gradle.internal.watch.registry.impl.HierarchicalFileWatcherUpdater] Watched directory hierarchies: []
+2026-08-08T07:54:10.511+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Build finished for file system watching'
+2026-08-08T07:54:10.511+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Build finished for file system watching' completed
+2026-08-08T07:54:10.512+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for cache directory md-supplier (/Users/falcon/.gradle/caches/8.11.1/md-supplier)
+2026-08-08T07:54:10.512+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on cache directory md-supplier (/Users/falcon/.gradle/caches/8.11.1/md-supplier).
+2026-08-08T07:54:10.513+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for Build Output Cleanup Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/buildOutputCleanup)
+2026-08-08T07:54:10.513+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on Build Output Cleanup Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/buildOutputCleanup).
+2026-08-08T07:54:10.514+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for cache directory md-rule (/Users/falcon/.gradle/caches/8.11.1/md-rule)
+2026-08-08T07:54:10.514+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on cache directory md-rule (/Users/falcon/.gradle/caches/8.11.1/md-rule).
+2026-08-08T07:54:10.515+0530 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 0 resolution results binary files in 0.0 secs
+2026-08-08T07:54:10.515+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Run build'
+2026-08-08T07:54:10.515+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Run build' completed
+2026-08-08T07:54:10.515+0530 [DEBUG] [org.gradle.internal.resources.AbstractTrackedResourceLock] Daemon worker Thread 3: released lock on worker lease
+2026-08-08T07:54:10.520+0530 [DEBUG] [org.gradle.deployment.internal.DefaultDeploymentRegistry] Stopping 0 deployment handles
+2026-08-08T07:54:10.520+0530 [DEBUG] [org.gradle.deployment.internal.DefaultDeploymentRegistry] Stopped deployment handles
+2026-08-08T07:54:10.520+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for file hash cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/fileHashes)
+2026-08-08T07:54:10.520+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on file hash cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/fileHashes).
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for checksums cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums)
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on checksums cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/checksums).
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCleanupExecutor] VCS Checkout Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/vcs-1) has last been fully cleaned up 8 hours ago
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCleanupExecutor] Skipping cleanup for VCS Checkout Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/vcs-1) as it is not yet due
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Cache VCS Checkout Cache (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/vcs-1) was closed 0 times.
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.cache.internal.DefaultCacheCoordinator] Cache VCS metadata (/Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle/8.11.1/vcsMetadata) was closed 0 times.
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Deleting unused version-specific caches in /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle' started
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Completing Build operation 'Deleting unused version-specific caches in /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle'
+2026-08-08T07:54:10.521+0530 [DEBUG] [org.gradle.internal.operations.DefaultBuildOperationRunner] Build operation 'Deleting unused version-specific caches in /Users/falcon/Downloads/PHOENIX/phoenix/bridge-app/.gradle' completed
+2026-08-08T07:54:10.529+0530 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+2026-08-08T07:54:10.566+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClientConnection] thread 3: dispatching class org.gradle.launcher.daemon.protocol.CloseInput
+2026-08-08T07:54:10.566+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClient] Received result Success[value=org.gradle.launcher.exec.BuildActionResult@4b9df8a] from daemon DaemonInfo{pid=21534, address=[0a817e95-b12c-47a7-b152-75b48f9fe6f0 port:55339, addresses:[/127.0.0.1]], state=Idle, lastBusy=1786155834761, context=DefaultDaemonContext[uid=f92b1e1f-e5f6-4904-a16f-2cdb3859e5c5,javaHome=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home,javaVersion=25,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/falcon/.gradle/daemon,pid=21534,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]} (build should be done).
+2026-08-08T07:54:10.566+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClientConnection] thread 3: dispatching class org.gradle.launcher.daemon.protocol.Finished
+2026-08-08T07:54:10.567+0530 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClientConnection] thread 3: connection stop
+2026-08-08T07:54:10.568+0530 [LIFECYCLE] [org.gradle.launcher.cli.DebugLoggerWarningAction] 
+#############################################################################
+   WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+
+   Debug level logging will leak security sensitive information!
+
+   For more details, please refer to https://docs.gradle.org/8.11.1/userguide/logging.html#sec:debug_security in the Gradle documentation.
+#############################################################################
+

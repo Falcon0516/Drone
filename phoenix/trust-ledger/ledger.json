@@ -1,0 +1,16 @@
+[
+    {
+        "block_index": 0,
+        "payload": {
+            "measurement_cm": 147.3,
+            "margin_of_error_cm": 0.4,
+            "gps_lat": 12.9352,
+            "gps_lon": 77.5339,
+            "colmap_points_hash": "a1b2c3d4e5f6789012345678abcdef0123456789abcdef0123456789abcdef01",
+            "timestamp": 1786155528,
+            "site_name": "Bellandur Lake Buffer Zone \u2014 Section A3",
+            "previous_hash": "GENESIS_00000000000000000000000000000000000000000000000000000000"
+        },
+        "block_hash": "a175bb6b0451094d80b470e16b31e751e606eb8a63b6ac3b406ad36cc1b893e1"
+    }
+]

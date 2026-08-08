@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHOENIX Ground Station — Mission Dashboard</title>
+    <meta name="description" content="PHOENIX drone fleet ground station dashboard with live telemetry, fault detection, and AI object detection.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header id="topbar">
+        <div class="topbar-left">
+            <span class="logo">🔥 PHOENIX</span>
+            <span class="subtitle">Ground Station</span>
+        </div>
+        <div class="topbar-center">
+            <div id="connectionBadge" class="badge badge-disconnected">
+                <span class="pulse-dot"></span>
+                <span id="connectionText">DISCONNECTED</span>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <span id="clock" class="clock"></span>
+        </div>
+    </header>
+
+    <main id="dashboard">
+        <!-- Left Column: Map -->
+        <section id="mapSection" class="panel">
+            <div class="panel-header">
+                <h2>Live Position</h2>
+                <span id="coordsDisplay" class="coords">—</span>
+            </div>
+            <div id="map"></div>
+        </section>
+
+        <!-- Right Column: Data Panels -->
+        <section id="dataSection">
+            <!-- Telemetry Card -->
+            <div class="panel telemetry-panel">
+                <div class="panel-header">
+                    <h2>Telemetry</h2>
+                    <span class="update-indicator" id="telemetryPulse"></span>
+                </div>
+                <div class="gauge-grid">
+                    <div class="gauge-card">
+                        <div class="gauge-label">Altitude</div>
+                        <div class="gauge-value" id="altValue">—</div>
+                        <div class="gauge-unit">metres</div>
+                    </div>
+                    <div class="gauge-card">
+                        <div class="gauge-label">Heading</div>
+                        <div class="gauge-value" id="hdgValue">—</div>
+                        <div class="gauge-unit">degrees</div>
+                    </div>
+                    <div class="gauge-card">
+                        <div class="gauge-label">Speed</div>
+                        <div class="gauge-value" id="spdValue">—</div>
+                        <div class="gauge-unit">m/s</div>
+                    </div>
+                    <div class="gauge-card">
+                        <div class="gauge-label">Battery</div>
+                        <div class="gauge-value" id="batValue">—</div>
+                        <div class="gauge-unit">%</div>
+                        <div class="battery-bar-container">
+                            <div class="battery-bar" id="batteryBar"></div>
+                        </div>
+                    </div>
+                    <div class="gauge-card">
+                        <div class="gauge-label">Pitch</div>
+                        <div class="gauge-value" id="pitchValue">—</div>
+                        <div class="gauge-unit">degrees</div>
+                    </div>
+                    <div class="gauge-card">
+                        <div class="gauge-label">Roll</div>
+                        <div class="gauge-value" id="rollValue">—</div>
+                        <div class="gauge-unit">degrees</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fault Alert Card -->
+            <div class="panel fault-panel" id="faultPanel">
+                <div class="panel-header">
+                    <h2>⚠ Fault Alerts</h2>
+                    <span class="fault-count" id="faultCount">0</span>
+                </div>
+                <div class="fault-list" id="faultList">
+                    <div class="empty-state">No faults detected</div>
+                </div>
+            </div>
+
+            <!-- AI Detections Card -->
+            <div class="panel ai-panel">
+                <div class="panel-header">
+                    <h2>🤖 AI Detections</h2>
+                    <span class="detection-count" id="detectionCount">0</span>
+                </div>
+                <div class="detection-list" id="detectionList">
+                    <div class="empty-state">No detections yet</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

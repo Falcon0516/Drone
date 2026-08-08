@@ -1,0 +1,9 @@
+# Android/IntelliJ/Gradle specifics
+.gradle/
+.idea/
+.vscode/
+build/
+local.properties
+*.apk
+*.log
+.DS_Store

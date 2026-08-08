@@ -1,0 +1,678 @@
+================================================================
+PHOENIX — TECHNICAL BUILD ROADMAP
+(For use with an AI coding agent, e.g. Antigravity)
+
+Each phase below has FOUR parts:
+  1. WHAT & WHY (plain-language explanation, for the team)
+  2. THINGS TO DO (checklist)
+  3. REUSABLE COMPONENTS TO DROP IN THE AGENT WORKSPACE (from old
+     projects, so the agent isn't starting from zero)
+  4. AGENT PROMPT (paste this directly to Antigravity to build the
+     phase)
+
+Read phases in order — each one depends on the last. Phases 0-4 are
+your CORE, demo-critical path. Phases 5-7 are your differentiators.
+Phase 8 is integration. Phase 9 is explicitly future/roadmap — do not
+attempt it under time pressure.
+================================================================
+
+
+PHASE 0 — WORKSPACE & REPO SETUP
+================================================================
+
+WHAT & WHY
+------------
+Before any new code gets written, the agent's workspace needs the old,
+already-working code sitting right next to it. This is the entire
+point of PHOENIX being credible: we are not writing five new systems,
+we are RE-POINTING three systems that already work. Set this up first
+so every later phase can literally import/reference real files instead
+of the agent guessing at an architecture from scratch.
+
+THINGS TO DO
+--------------
+- Create one parent folder for the whole project, e.g. "phoenix/"
+- Clone the existing bridge app into it as a subfolder
+- Create empty subfolders for the new pieces: sensor-fusion,
+  reconstruction, trust-ledger, dashboard, mission-planner
+- Write down, in a short README, which parts of the old code are
+  being reused vs. extended vs. left untouched — this becomes your
+  "what's real" pitch material later, for free
+- Decide your language/stack up front so the agent doesn't waffle:
+  Android app = Kotlin/Java (existing), backend/ML = Python, dashboard
+  = React (existing ARGUS pattern), mission planner = a small
+  web-based map UI (Leaflet or Mapbox + React)
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- Full clone of: github.com/Falcon0516/ANDROID_USB_TCP_BRIDGE_APPLICATION
+  (this is your foundation — do not rewrite it, extend it)
+- Any existing ARGUS dashboard code you have (React Mission Dashboard,
+  Tailscale mesh config/scripts)
+- Any existing AXIOM code you have (drift-detection scoring logic,
+  hash-anchoring / multi-sig consensus contract code, even if it's
+  currently written for Algorand/payments — the MATH is what's reused,
+  not the payments-specific parts)
+
+AGENT PROMPT
+--------------
+"Set up a new project workspace called 'phoenix/'. Inside it, clone
+the repository at
+https://github.com/Falcon0516/ANDROID_USB_TCP_BRIDGE_APPLICATION.git
+into a subfolder called 'bridge-app/' — do not modify it yet, just get
+it cloned and give me a summary of its existing architecture: list
+every class/file in USBManager, DataBridge, and TCPManager, and
+explain in plain English what each one currently does. Also create
+empty subfolders: 'sensor-fusion/', 'reconstruction/', 'trust-ledger/',
+'dashboard/', 'mission-planner/'. Finally, write a README.md at the
+project root with three sections: 'Reused As-Is', 'Reused & Extended',
+'Newly Built', which I will fill in as we go."
+
+
+PHASE 1 — TAILSCALE + FLIGHT-CONTROLLER TELEMETRY LINK
+================================================================
+
+WHAT & WHY
+------------
+This is the load-bearing phase — if this doesn't work, nothing else
+matters, because every other phase depends on telemetry actually
+flowing from the flight controller, through the phone, to a ground
+dashboard. Right now the bridge app moves data between a
+microcontroller and a phone over USB, then phone-to-phone over local
+TCP, for a rover. We need the exact same pattern, just: (a) pointed at
+a flight controller's MAVLink data stream instead of rover sensor
+data, and (b) tunneled over Tailscale instead of local WiFi, so it
+works from anywhere without extra hardware.
+
+Since you won't have a real flight controller wired up on day one,
+build and test against ArduPilot's SITL (Software In The Loop) — a
+simulated flight controller that behaves exactly like a real one over
+MAVLink, so you can develop the entire pipeline without a physical
+drone.
+
+THINGS TO DO
+--------------
+- Install/run ArduPilot SITL on a lab machine (simulated drone,
+  outputs real MAVLink telemetry)
+- Confirm the existing USBManager/serial-read logic in the bridge app
+  can be pointed at a MAVLink telemetry stream instead of the rover's
+  original sensor protocol (SITL can expose this over a TCP/UDP port
+  too, useful for early testing before touching real USB)
+- Extend TCPManager (or add a thin new module next to it) to tunnel
+  that data over Tailscale instead of local WiFi
+- Confirm the existing DataBridge queuing logic handles this new data
+  type without changes (it should — this is the whole point of it
+  being a general-purpose bridge)
+- Keep the existing emergency-stop-on-disconnect (M:0,0) behavior
+  intact and confirm it still fires correctly
+- Get raw telemetry (position, altitude, heading, battery %) visibly
+  flowing from SITL -> phone -> a ground machine, even as raw
+  printed/logged text first, before building any UI for it
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- bridge-app/ (from Phase 0) — specifically USBManager.kt,
+  DataBridge.kt, TCPManager.kt and the emergency-stop logic
+- Any existing Tailscale configuration/scripts from the ARGUS mesh
+  setup (auth keys, tailnet config) — reuse the same tailnet if
+  possible so this plugs straight into your existing lab network
+
+AGENT PROMPT
+--------------
+"Inside phoenix/bridge-app/, I want to extend the existing Android
+bridge app (USBManager, DataBridge, TCPManager) to work with drone
+telemetry instead of rover sensor data. Step 1: set up and run
+ArduPilot SITL on this machine so it emits MAVLink telemetry over a
+TCP/UDP port — walk me through the install if it's not already
+present. Step 2: write a small Python test script that connects to
+SITL's MAVLink output and prints position, altitude, heading, and
+battery percentage every second, so I can confirm SITL is working
+before touching the Android app. Step 3: modify TCPManager.kt (or add
+a new sibling class if that's cleaner — your call, explain why) so
+that instead of just sending over local TCP, it tunnels the same data
+over a Tailscale connection to a specified ground-machine address.
+Step 4: confirm DataBridge's existing queuing logic doesn't need
+changes to carry this new telemetry type — if it does, make the
+minimal change needed and explain what you changed and why. Step 5:
+do NOT touch or weaken the existing emergency-stop-on-disconnect (the
+M:0,0 command) — confirm it still triggers if the Tailscale link
+drops, and show me the relevant code path. End by giving me a simple
+way to test end-to-end: SITL running -> phone app (or emulator)
+receiving MAVLink -> ground machine receiving the same data over
+Tailscale, printed to console."
+
+
+PHASE 2 — PHONE-VS-FLIGHT-CONTROLLER SENSOR CROSS-CHECK
+================================================================
+
+WHAT & WHY
+------------
+This is your "no AI guesswork, just physics" safety story, and it's
+one of the two things worth demoing live on stage. The phone has its
+own GPS, accelerometer, and magnetometer — completely independent of
+the flight controller's own sensors. If the two ever disagree beyond
+a sane threshold (flight controller says level and stable, phone says
+tilting and drifting), that's a real fault signal: a spoofed GPS
+signal, a corrupted sensor, tampering, or a hardware fault. This
+reuses the SAME underlying idea as AXIOM's behavioral-drift detection
+(comparing an expected pattern against an observed one and scoring
+the deviation), just grounded in raw physical sensors instead of
+transaction/behavior data.
+
+Important nuance to keep in the code and the pitch: the phone's
+magnetometer is only trustworthy as a CROSS-CHECK, not a primary
+source, if it's mounted anywhere near motors/ESCs (electromagnetic
+interference throws it off). Build the comparison logic to account
+for this, or exclude magnetometer-vs-magnetometer checks entirely and
+lean on GPS + accelerometer/gyro comparisons as your primary fault
+signal.
+
+THINGS TO DO
+--------------
+- Read the phone's own GPS, accelerometer, and magnetometer via
+  Android's SensorManager APIs, at a steady sample rate
+- Read the flight controller's equivalent values from the MAVLink
+  stream already flowing in Phase 1
+- Write a comparison function: define a sane disagreement threshold
+  for each sensor pair (e.g., position disagreement beyond X metres,
+  attitude/tilt disagreement beyond Y degrees)
+- When disagreement exceeds threshold, emit a clearly tagged "FAULT"
+  message using the bridge app's existing prefix-routing pattern (the
+  same pattern used for "US:" ultrasonic data — add a new prefix, e.g.
+  "FAULT:", rather than inventing a whole new protocol)
+- Send that FAULT message over the same Tailscale link from Phase 1 to
+  the ground dashboard
+- Build a simple way to MANUALLY trigger a fake disagreement for
+  demo purposes (e.g., a debug button that injects a fake GPS jump),
+  so you can reliably show the fault-detection working live without
+  needing an actual hardware fault
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- The existing "US:" prefix-routing pattern from the bridge app — copy
+  its exact structure for the new "FAULT:" and "AI:" prefixes so the
+  whole system stays consistent
+- AXIOM's drift-detection scoring logic/math (even if written for a
+  different domain originally) — reuse the actual thresholding/scoring
+  approach, adapted to sensor values instead of transaction behavior
+
+AGENT PROMPT
+--------------
+"Inside phoenix/sensor-fusion/, build a module that compares the
+phone's own sensors against the flight controller's telemetry that's
+already flowing in from Phase 1. Specifically: (1) Read the phone's
+GPS, accelerometer, and magnetometer using Android's SensorManager,
+sampled at 5-10Hz. (2) Parse the equivalent values (position,
+attitude/tilt, heading) out of the MAVLink stream already being
+received. (3) Write a comparator that flags a 'disagreement' when GPS
+positions differ by more than a configurable threshold (start at 5
+metres) or attitude/tilt differs by more than a configurable threshold
+(start at 10 degrees) — treat magnetometer comparison as lower-priority
+and clearly comment in the code why (EMI risk near motors/ESCs makes
+it unreliable as a primary signal). (4) When a disagreement is
+flagged, send a message using the SAME prefix-routing pattern already
+used for 'US:' messages in the existing bridge app, but with a new
+'FAULT:' prefix, containing which sensor disagreed, by how much, and a
+timestamp. (5) Route this FAULT message over the existing Tailscale
+link from Phase 1 to the ground dashboard. (6) Add a debug-only
+function (behind a clearly labeled flag, e.g. DEBUG_INJECT_FAULT) that
+lets me manually simulate a GPS jump or attitude mismatch on demand,
+for live demo purposes — make sure this is impossible to trigger
+accidentally in a non-debug build. Show me the full data flow with a
+short test where I can inject a fake fault and see the FAULT message
+show up on the receiving end."
+
+
+PHASE 3 — ON-DEVICE AI OBJECT DETECTION (TFLITE)
+================================================================
+
+WHAT & WHY
+------------
+This is the layer that eventually spots structures/objects inside a
+lake buffer zone from the air. Running a lightweight object-detection
+model directly on the phone (rather than sending raw video to a
+server) keeps bandwidth low and works even on a shaky cellular
+connection — the phone only needs to send back what it found, not the
+whole video stream. This reuses the exact prefix-routing trick from
+Phase 2, just with a new "AI:" prefix instead of "FAULT:".
+
+THINGS TO DO
+--------------
+- Get a pretrained, lightweight object-detection model in TFLite
+  format (YOLOv8n or similar "nano" variant — small enough to run
+  smoothly on a phone)
+- Wire it into the phone's camera feed so it runs detection on live
+  frames (or on a fixed interval, not necessarily every single frame,
+  to manage battery/heat)
+- Format detections (object type, bounding box, confidence score, GPS
+  tag from the phone at capture time) into a message using the same
+  prefix-routing pattern, tagged "AI:"
+- Send these over the existing Tailscale link to the ground dashboard
+- Keep this decoupled from the reconstruction pipeline (Phase 5) —
+  this is live "what am I seeing right now" detection, not the
+  after-the-flight certified measurement
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- The "US:"/"FAULT:" prefix-routing pattern (copy structure again for
+  consistency, new "AI:" prefix)
+- DataBridge's existing queuing logic — detections should queue the
+  same way other sensor data already does, no special-casing needed
+
+AGENT PROMPT
+--------------
+"Inside phoenix/bridge-app/, add on-device object detection to the
+Android app. Use a pretrained TFLite YOLOv8n (or similarly lightweight
+'nano' class) model — if I don't already have a .tflite file, tell me
+exactly where to get one and how to bundle it into the app assets.
+Wire the phone's camera feed into this model, running inference on a
+configurable interval (default: every 2 seconds, not every frame, to
+manage battery and heat — explain the tradeoff in a comment). For each
+detection above a confidence threshold, format a message containing
+object type, bounding box, confidence score, and the phone's current
+GPS coordinates, and send it using the SAME prefix-routing pattern
+already established for 'US:' and 'FAULT:' messages, but tagged 'AI:'.
+Route these over the existing Tailscale link to the ground dashboard,
+reusing DataBridge's existing queue rather than building a separate
+pipeline. Give me a way to test this using either the phone's live
+camera or a pre-recorded test video file, so I don't need to be
+outdoors to verify it's working."
+
+
+PHASE 4 — GROUND DASHBOARD (LIVE TELEMETRY + DETECTIONS)
+================================================================
+
+WHAT & WHY
+------------
+This is where a human actually watches what's happening — live
+position, battery, fault flags, and AI detections, all in one place.
+Reuse the ARGUS React Mission Dashboard as the base rather than
+building a UI from scratch; it already knows how to render live data
+coming over your Tailscale mesh, it just needs to be re-skinned and
+pointed at the new message types (telemetry, FAULT:, AI:) instead of
+whatever ARGUS originally displayed.
+
+THINGS TO DO
+--------------
+- Stand up the existing ARGUS dashboard code and confirm it still
+  runs, before changing anything
+- Add a live map view showing the drone/phone's current GPS position
+  (reuse whatever mapping library ARGUS already uses if it has one)
+- Add a telemetry panel: altitude, heading, battery %, connection
+  status
+- Add a fault-alert panel that lights up clearly when a FAULT: message
+  arrives (this needs to be visually unmissable for the live demo)
+- Add a detections panel/overlay showing AI: messages as they arrive
+  (list view is fine to start; overlay on camera feed is a nice-to-have
+  stretch goal, not a requirement)
+- Confirm everything updates in near-real-time as data flows in from
+  Phases 1-3
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- Full existing ARGUS React Mission Dashboard code
+- Any existing Tailscale-aware data-fetching/socket code ARGUS already
+  has for pulling live data across the mesh
+
+AGENT PROMPT
+--------------
+"Inside phoenix/dashboard/, start from the existing ARGUS React
+Mission Dashboard code (I'll provide/have placed it here). First, get
+it running as-is so we have a known-good baseline. Then: (1) Add a
+live map panel showing the current GPS position coming from the
+telemetry stream set up in Phase 1 — reuse whatever mapping approach
+ARGUS already has if one exists, otherwise use a lightweight option
+like Leaflet. (2) Add a telemetry readout panel: altitude, heading,
+battery percentage, and connection status, updating live. (3) Add a
+clearly visible alert panel that activates when a 'FAULT:' prefixed
+message arrives from Phase 2 — make this visually obvious (color
+change, sound optional) since this needs to read clearly to an
+audience during a live demo. (4) Add a detections list panel that
+populates from 'AI:' prefixed messages from Phase 3, showing object
+type, confidence, and location per detection. (5) Keep all of this
+polling/subscribing to the same Tailscale-connected data source ARGUS
+already uses — don't introduce a second, separate connection method.
+Show me the dashboard running locally with simulated test messages for
+telemetry, a FAULT, and an AI detection, so I can confirm all three
+panels update correctly before connecting it to the real pipeline."
+
+
+PHASE 5 — CERTIFIED 3D RECONSTRUCTION (COLMAP + MARKER SCALE)
+================================================================
+
+WHAT & WHY
+------------
+This is the "proof" layer, and it's the highest-technical-risk piece,
+so read this section carefully before building.
+
+Important correction to keep in mind: the actual MEASURED geometry
+does not come from the pretty-looking 3D splat/model — it comes from
+COLMAP, the step that runs BEFORE the pretty rendering. COLMAP does
+structure-from-motion: it matches shared features across your
+overlapping photos and triangulates a 3D point cloud plus camera
+positions, with a measurable error value for how precise each point
+is. That point cloud, not the rendered splat, is your actual ruler.
+The splat (via gsplat/Nerfstudio) is a nice-looking, walkable render
+built on top of it afterward — good for the "wow" demo, not for the
+certified number.
+
+The other missing piece is SCALE. A camera-only reconstruction knows
+relative distances (point A is some multiple of the distance to point
+B) but has no idea if that multiple means centimetres or metres. A
+printed marker (ArUco/AprilTag) of a known, exact real-world size,
+placed somewhere visible in the photos, fixes this: detect the
+marker's corners in the reconstruction, compare its reconstructed size
+to its real size, and that ratio becomes your scale factor. Multiply
+every other distance in the point cloud by that factor and you have
+real-world centimetres, with a stated margin of error — not
+millimetre-perfect, but genuinely calibrated and defensible.
+
+THINGS TO DO
+--------------
+- Print a physical ArUco or AprilTag marker at an exact, known size
+  (measure it precisely with calipers/ruler, don't trust the printer)
+- Capture a systematic, overlapping photo set of a real test area (a
+  wall, a small structure — doesn't need to be an actual lake for the
+  POC) with the marker clearly visible in at least 2 photos, camera
+  settings (focus/exposure) LOCKED for the whole capture pass
+- Run COLMAP on the photo set to get a sparse point cloud, camera
+  poses, and per-point reprojection error
+- Write a small script to detect the marker in the reconstruction,
+  compute the scale factor against its known real-world size, and
+  apply that factor to the whole point cloud
+- Build a simple "pick two points, get a distance + margin of error"
+  tool on top of the scaled point ccloud — this is your actual
+  certified-measurement demo, and it does NOT require the pretty splat
+  to be finished or even started
+- Separately (lower priority, purely visual), feed the same photo set
+  into gsplat/Nerfstudio to produce a walkable splat for the "wow"
+  visual — but do not measure from it, and do not block the
+  measurement demo on this finishing
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- None from old repos here — this is genuinely new, open-source
+  tooling (COLMAP, OpenCV's ArUco module, gsplat/Nerfstudio). Note
+  this honestly in your README's "Newly Built" section.
+
+AGENT PROMPT
+--------------
+"Inside phoenix/reconstruction/, build the certified-measurement
+pipeline, kept SEPARATE from any splat/rendering code so the
+measurement demo never depends on the splat finishing. Step 1: write a
+script that runs COLMAP (assume it's installed, or tell me exactly how
+to install it) on a folder of overlapping photos, producing a sparse
+point cloud, camera poses, and per-point reprojection error, saved to
+a clear output folder. Step 2: using OpenCV's ArUco module, write a
+script that detects a printed marker (I'll specify its exact real-world
+size in millimetres) across the photo set, locates its corners in the
+COLMAP reconstruction, computes the scale factor between the
+reconstructed size and the real size, and applies that factor to
+rescale the entire point cloud into real-world centimetres. Step 3:
+build a small command-line or simple local web tool where I can click
+two points in the scaled point cloud and get back a distance in
+centimetres PLUS a margin of error derived from the reprojection error
+and marker-detection precision — explain in comments exactly how that
+margin is calculated so I can defend the number if asked. Step 4:
+separately, as a lower-priority add-on, write a script that feeds the
+same photo folder into gsplat or Nerfstudio to produce a viewable
+splat — clearly comment in the code and in a README note that this
+splat is for VISUAL purposes only and is never the source of any
+measurement claim. Give me a full test run using a small real object
+(e.g., a box or a marked wall segment) with a known real-world
+dimension, so I can confirm the pipeline's reported measurement
+against a tape-measure ground truth before trusting it for the demo."
+
+
+PHASE 6 — TRUST LEDGER / TAMPER-PROOF HASH-ANCHORING
+================================================================
+
+WHAT & WHY
+------------
+Once you have a certified measurement (Phase 5), it needs to be
+sealed so nobody can quietly edit or delete it afterward. This reuses
+AXIOM's actual logic — hashing a piece of data and anchoring that hash
+somewhere immutable, plus (if time allows) the multi-sig/consensus
+idea so a single faulty device or single bad actor can't fabricate a
+result alone. For the POC, the on-chain anchoring can be simplified —
+what matters for the demo is showing that ANY change to the underlying
+data changes the hash completely and obviously, proving tampering
+would be detectable.
+
+THINGS TO DO
+--------------
+- Take AXIOM's existing hashing/anchoring logic and adapt the input
+  format: instead of a transaction record, hash the reconstruction
+  output (raw photo set reference, COLMAP output, computed measurement,
+  timestamp, GPS location)
+- Anchor that hash somewhere tamper-evident (reuse whatever AXIOM
+  already anchors to — Algorand or similar — if that's fastest; a
+  simple public timestamping service or even a local append-only log
+  with hash-chaining is an acceptable fallback for a POC if blockchain
+  setup eats too much time)
+- Build a simple verification tool: given the original data and the
+  anchored hash, confirm they match; then deliberately alter one
+  number in the data and show the hash no longer matches — this
+  mismatch IS your live demo of "tampering is detectable"
+- If time allows, port AXIOM's multi-sig/consensus logic so a
+  measurement needs agreement from more than one flight pass before
+  being marked "verified" — clearly label this as a stretch goal, not
+  core-path
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- AXIOM's existing hashing/anchoring code (adapt the input schema,
+  reuse the actual hashing + anchoring mechanism as-is where possible)
+- AXIOM's multi-sig/escrow consensus contract logic (stretch goal only)
+
+AGENT PROMPT
+--------------
+"Inside phoenix/trust-ledger/, adapt the existing AXIOM
+hashing/anchoring logic (I'll place the AXIOM code here) to work with
+reconstruction outputs instead of payment transactions. Step 1: write
+a function that takes a reconstruction result — the photo set
+reference, COLMAP output summary, computed measurement value, margin
+of error, timestamp, and GPS location — and produces a single hash
+using the same hashing approach AXIOM already uses. Step 2: adapt
+AXIOM's existing anchoring mechanism to store that hash somewhere
+tamper-evident; if the original targets a blockchain like Algorand and
+that's already configured, reuse it as-is — if setting that up would
+eat significant time, fall back to a simple hash-chained append-only
+local log instead, and clearly comment that this is the POC fallback
+versus the production path. Step 3: build a small verification script:
+given the original reconstruction data and a stored hash, confirm they
+match and print 'VERIFIED'; then run it again after I manually alter
+one value (e.g., change the measurement number slightly) and confirm
+it prints 'TAMPERING DETECTED — hash mismatch'. This mismatch is the
+core of my live demo, so make the output unambiguous and clearly
+readable at a glance. Step 4, stretch goal only, clearly labeled as
+optional: if time allows, adapt AXIOM's multi-sig/consensus contract
+logic so a measurement only becomes 'verified' after agreement from
+more than one independent flight pass or device — do not let this
+block the rest of the pipeline if it's not ready in time."
+
+
+PHASE 7 — AUTONOMOUS MISSION PLANNER (BOUNDARY-DRAW + BATTERY-SPLIT)
+================================================================
+
+WHAT & WHY
+------------
+This is your safest high-visual-impact demo piece — it's pure
+software, has zero flight risk, and it's the part that visually sells
+"autonomous" to an audience who won't follow the deeper architecture.
+The idea: a user draws a boundary shape on a map (e.g., a lake's
+buffer zone), and the software automatically works out a proper
+back-and-forth survey flight path with correct photo overlap, then
+splits that path into chunks that each fit inside one battery's safe
+flight time — like a route planner splitting a long walk into
+manageable days.
+
+Note: this planner GENERATES the flight plan and shows it visually.
+It does not need to actually fly a real drone for the Monday demo —
+showing the boundary-to-flight-path-to-battery-split calculation
+working correctly, visually, is enough.
+
+THINGS TO DO
+--------------
+- Build a simple map UI where a user can draw a polygon (the boundary
+  to survey)
+- Given the polygon, camera field-of-view, and target photo overlap
+  percentage, calculate a "lawnmower" back-and-forth flight path that
+  covers the whole area with correct overlap
+- Calculate total path distance, then estimate flight time using a
+  configurable cruise speed
+- Given a configurable safe-battery-flight-time value (with a safety
+  buffer under the true limit), split the path into flight-time-sized
+  chunks
+- Visually render each chunk in a different color on the map, with an
+  estimated flight time label per chunk
+- (Optional stretch) Export each chunk as a waypoint file in a format
+  ArduPilot's AUTO mode can actually read, for later real-world testing
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- None from old repos — this is new. Note it in the "Newly Built"
+  section of the README. A lightweight map library (Leaflet/Mapbox) is
+  the main external dependency.
+
+AGENT PROMPT
+--------------
+"Inside phoenix/mission-planner/, build a web-based map tool (React +
+Leaflet, or Mapbox if I have an API key available) where I can draw a
+polygon on a map representing a survey boundary. Step 1: implement
+polygon drawing on the map. Step 2: given the polygon, a configurable
+flight altitude, a configurable camera field-of-view angle, and a
+target photo-overlap percentage (default 70%), calculate a
+back-and-forth 'lawnmower' flight path (parallel lines spaced correctly
+for that overlap) that fully covers the polygon — show your spacing
+math in comments so I can explain it if asked. Step 3: calculate total
+path length, then estimated flight time using a configurable cruise
+speed (default 8 m/s). Step 4: given a configurable safe-flight-time-
+per-battery value (default 15 minutes, clearly labeled as already
+including a safety buffer below the drone's true limit), split the
+full flight path into consecutive chunks that each fit within one
+battery's safe flight time. Step 5: render each chunk as a different
+color on the map, with a label showing estimated flight time and photo
+count for that chunk. Step 6, optional stretch: add an export button
+that writes each chunk as a waypoint file in a format ArduPilot's AUTO
+mode can load (e.g., a standard MAVLink mission file), for future real
+flight testing — clearly mark this as untested against a real flight
+controller. Show me a working example with a sample polygon (I'll draw
+one covering a few acres) to confirm the split makes sense before I
+present it."
+
+
+PHASE 8 — END-TO-END INTEGRATION & DEMO SCRIPT
+================================================================
+
+WHAT & WHY
+------------
+This phase doesn't add new capability — it makes sure everything built
+in Phases 1-7 actually connects into one coherent, rehearsable demo,
+and it forces an honest decision about what's shown LIVE vs. shown as
+a RECORDING/SLIDE, so nothing falls apart in front of the audience.
+
+THINGS TO DO
+--------------
+- Confirm the full data path works end to end at least once: SITL (or
+  real FC) -> bridge app -> Tailscale -> dashboard, including a live
+  fault injection (Phase 2) showing up correctly on the dashboard
+  (Phase 4)
+- Run the reconstruction pipeline (Phase 5) on a real captured photo
+  set ahead of time — do NOT attempt to train anything live on stage;
+  pre-run it and have the output ready
+- Run the trust-ledger tamper-detection demo (Phase 6) as a scripted,
+  reliable sequence: show a verified hash, alter a value, show
+  detection — this should be 100% reliable since it's just local logic
+- Have the mission planner (Phase 7) loaded with a real or realistic
+  boundary example, ready to draw live if there's time, or pre-drawn as
+  a fallback
+- Record a clean backup video of the full pipeline working, in case
+  anything live hiccups during the actual pitch
+- Explicitly script which TWO things get demoed live hands-on
+  (recommended: the phone-vs-FC fault injection, and the tamper-proof
+  hash-mismatch detection — both are fast, reliable, and visceral),
+  and which things are narrated over slides/recording (fleet strategy,
+  tiered cost story, monetization, full airborne integration as
+  roadmap)
+
+REUSABLE COMPONENTS TO PLACE IN WORKSPACE
+--------------------------------------------
+- Nothing new — this phase wires together everything from Phases 0-7
+
+AGENT PROMPT
+--------------
+"Across the whole phoenix/ workspace, help me build and verify an
+end-to-end integration test and a demo runbook. Step 1: write a single
+test script that starts SITL, starts the bridge app's telemetry link
+(Phase 1), triggers a debug fault injection (Phase 2), and confirms the
+FAULT message correctly appears on the dashboard (Phase 4) within a
+few seconds — report pass/fail clearly. Step 2: write a second script
+that runs the tamper-detection demo end to end (Phase 6): load a real
+reconstruction output, show it verifies successfully, alter one value,
+re-run verification, and confirm it correctly reports 'TAMPERING
+DETECTED'. Step 3: create a markdown DEMO_RUNBOOK.md that lists, in
+order: what gets shown live and hands-on (fault injection + dashboard
+alert, tamper-detection mismatch), what gets shown as a pre-recorded
+video (SITL-to-dashboard telemetry flow, reconstruction pipeline
+output), and what gets explained on slides only (fleet cost strategy,
+tiered phone approach, monetization, autonomous mission planner if
+time-constrained). Step 4: write a short screen-recording script/guide
+for capturing the backup demo video of the full pipeline, so there's a
+reliable fallback if live tools misbehave during the actual
+presentation."
+
+
+PHASE 9 — FUTURE ROADMAP (DO NOT ATTEMPT UNDER TIME PRESSURE)
+================================================================
+
+WHAT & WHY
+------------
+These are real, legitimate next steps — the kind of thing that "club
+funding accelerates," as the pitch narrative says — but they need real
+flight-testing time, hardware, and in some cases regulatory steps that
+cannot be rushed. Listing them clearly (without attempting them) is
+what makes the "what's real vs. roadmap" section of the pitch
+credible.
+
+ITEMS FOR LATER
+------------------
+- Full airborne integration of every layer at once, on a real drone,
+  not SITL
+- Fully autonomous multi-battery large-area survey flights using the
+  Phase 7 mission planner's waypoint export, flown for real
+- Crash-hardened phone mounts actually field-tested (vibration
+  damping, quick-release mechanism) across many flights, not just
+  designed
+- DGCA / Digital Sky airspace zone permissions for any real autonomous
+  deployment in India — this needs to be a stated awareness point in
+  the pitch, not something attempted this week
+- Scaling from a single bench unit to an actual multi-drone fleet
+- Formal partnerships/contracts with BBMP, the Lake Development
+  Authority, or NGOs for real deployment of JALSAKSHI
+- Productizing the retrofit kit (mount + app + guide) as a sellable
+  package for other operators
+
+AGENT PROMPT
+--------------
+(Not applicable yet — this phase is intentionally not something to
+hand to the coding agent until Phases 0-8 are working and the club/
+funding path is actually secured. When that time comes, revisit this
+roadmap and turn each bullet above into its own phase, following the
+same four-part format used throughout this document.)
+
+
+================================================================
+QUICK REFERENCE — WHAT TO REUSE FROM WHERE
+================================================================
+- ANDROID_USB_TCP_BRIDGE_APPLICATION repo -> Phases 0, 1, 2, 3
+  (USBManager, DataBridge, TCPManager, prefix-routing pattern,
+  emergency-stop logic)
+- ARGUS (mesh + dashboard) -> Phases 1, 4 (Tailscale config, React
+  dashboard base)
+- AXIOM (drift-detection + hashing/consensus) -> Phases 2, 6
+  (comparison/scoring math, hashing + anchoring logic, optional
+  multi-sig consensus)
+- Genuinely new, no reuse -> Phases 5, 7 (COLMAP/ArUco/gsplat
+  reconstruction pipeline, map-based mission planner)
+================================================================
