@@ -152,6 +152,10 @@ class BridgeService : LifecycleService(),
         powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
         wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         createNotificationChannel()
+        
+        telemetryManager = TelemetryManager(this)
+        gpsManager = GPSManager(this)
+        ultrasonicManager = UltrasonicManager()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -226,10 +230,6 @@ class BridgeService : LifecycleService(),
         
         mavlinkParser?.start()
         phoneSensorManager?.start()
-        
-        telemetryManager = TelemetryManager(this)
-        gpsManager = GPSManager(this)
-        ultrasonicManager = UltrasonicManager()
 
         // Start USB/SITL manager
         if (isSitlMode) {
@@ -242,17 +242,6 @@ class BridgeService : LifecycleService(),
         if (tcpManager?.start(targetHost, tcpPort) == true) {
             addLog(getString(R.string.log_tcp_server_started, tcpPort), LogType.SUCCESS)
         }
-
-        // Start Ultrasonic Manager (Auto-start on Port 8004)
-        ultrasonicManager?.start(8004)
-        addLog("Ultrasonic Server started on port 8004", LogType.INFO)
-
-        // Auto-start other telemetry streams for persistence
-        telemetryManager?.start(8001)
-        addLog("Telemetry Server auto-started on port 8001", LogType.INFO)
-        
-        gpsManager?.start(8002) 
-        addLog("GPS Server auto-started on port 8002", LogType.INFO)
 
         // Start data bridge
         dataBridge?.start()
@@ -311,15 +300,12 @@ class BridgeService : LifecycleService(),
         
         // Stop Telemetry
         telemetryManager?.stop()
-        telemetryManager = null
         
         // Stop GPS
         gpsManager?.stop()
-        gpsManager = null
         
         // Stop Ultrasonic
         ultrasonicManager?.stop()
-        ultrasonicManager = null
 
         // Release WakeLocks
         releaseWakeLocks()
